@@ -1,0 +1,21 @@
+<p-card styleClass="mb-1">
+  <ng-template pTemplate="header">
+    <div class="px-4 pt-4">
+      <h2 class="text-xl font-bold">Quick Actions</h2>
+    </div>
+  </ng-template>
+  
+  <div class="grid grid-cols-2 gap-3">
+    <button
+      *ngFor="let action of quickActions"
+      class="flex flex-col items-center justify-center gap-3 py-4 px-2 rounded-xl border hover:bg-muted/50 transition-colors"
+      [style.border-color]="action.color + '30'"
+      (click)="action.action()"
+    >
+      <div class="w-10 h-10 rounded-full flex items-center justify-center" [style.background-color]="action.color + '20'">
+        <i [class]="action.icon" [style.color]="action.color"></i>
+      </div>
+      <div class="text-sm font-medium">{{ action.label }}</div>
+    </button>
+  </div>
+</p-card> 

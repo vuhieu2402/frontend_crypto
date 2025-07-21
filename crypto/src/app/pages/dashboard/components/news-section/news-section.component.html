@@ -1,0 +1,54 @@
+<p-card styleClass="mt-2 news-card">
+  <ng-template pTemplate="header">
+    <div class="flex justify-between items-center px-4 pt-4">
+      <h2 class="text-xl font-bold">Latest News</h2>
+      <p-button icon="pi pi-sync" styleClass="p-button-rounded p-button-text" (click)="refreshNews()"></p-button>
+    </div>
+  </ng-template>
+
+  <p-tabView>
+    <p-tabPanel header="Market News">
+      <div class="space-y-4 news-content">
+        <div *ngFor="let item of marketNews" class="flex flex-col gap-2 p-3 border-b last:border-b-0 hover:bg-muted/20 transition-colors news-item">
+          <div class="flex items-center gap-2">
+            <p-avatar
+              [label]="item.sourceIcon"
+              shape="circle"
+              styleClass="bg-primary"
+            ></p-avatar>
+            <span class="text-xs text-muted-foreground">{{ item.source }}</span>
+            <span class="text-xs text-muted-foreground">•</span>
+            <span class="text-xs text-muted-foreground">{{ item.time }}</span>
+            <p-badge [value]="item.tag" [severity]="item.tagSeverity" styleClass="ml-auto"></p-badge>
+          </div>
+          <div class="font-medium leading-tight">{{ item.title }}</div>
+        </div>
+      </div>
+    </p-tabPanel>
+    
+    <p-tabPanel header="Analysis">
+      <div class="space-y-4 news-content">
+        <div *ngFor="let item of analysisNews" class="flex flex-col gap-2 p-3 border-b last:border-b-0 hover:bg-muted/20 transition-colors news-item">
+          <div class="flex items-center gap-2">
+            <p-avatar
+              [label]="item.sourceIcon"
+              shape="circle"
+              styleClass="bg-primary"
+            ></p-avatar>
+            <span class="text-xs text-muted-foreground">{{ item.source }}</span>
+            <span class="text-xs text-muted-foreground">•</span>
+            <span class="text-xs text-muted-foreground">{{ item.time }}</span>
+            <p-badge [value]="item.tag" [severity]="item.tagSeverity" styleClass="ml-auto"></p-badge>
+          </div>
+          <div class="font-medium leading-tight">{{ item.title }}</div>
+        </div>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+  
+  <ng-template pTemplate="footer">
+    <div class="flex justify-center">
+      <p-button label="View All News" icon="pi pi-external-link" styleClass="p-button-text" (click)="viewAllNews()"></p-button>
+    </div>
+  </ng-template>
+</p-card> 

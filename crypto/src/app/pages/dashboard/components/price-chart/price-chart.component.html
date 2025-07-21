@@ -1,0 +1,53 @@
+<p-card styleClass="mb-1">
+  <ng-template pTemplate="header">
+    <div class="flex flex-wrap justify-between items-center gap-3 px-4 pt-4">
+      <div>
+        <h2 class="text-xl font-bold">{{ cryptoPrice?.name || 'Loading...' }} {{ cryptoPrice?.symbol ? '(' + cryptoPrice?.symbol + ')' : '' }}</h2>
+        <div class="flex items-center mt-1 gap-2">
+          <span class="text-2xl font-bold">{{ (cryptoPrice?.currentPrice || 0) | currency:'USD':'symbol':'1.2-2' }}</span>
+          <ng-container *ngIf="cryptoPrice">
+            <span class="text-sm font-semibold" [ngClass]="{'text-green-500': cryptoPrice.priceChangePercentage > 0, 'text-red-500': cryptoPrice.priceChangePercentage < 0}">
+              {{ cryptoPrice.priceChangePercentage > 0 ? '+' : '' }}{{ cryptoPrice.priceChangePercentage | number:'1.2-2' }}%
+            </span>
+          </ng-container>
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <p-dropdown
+          [options]="timeOptions"
+          [(ngModel)]="selectedTimeOption"
+          optionLabel="label"
+          placeholder="Select Time"
+          styleClass="w-full"
+          (onChange)="onTimeframeChange()"
+        ></p-dropdown>
+        <p-button 
+          icon="pi pi-refresh" 
+          styleClass="p-button-rounded p-button-outlined"
+          (onClick)="refreshData()"
+          [loading]="loading"
+          pTooltip="Refresh data"
+        ></p-button>
+      </div>
+    </div>
+  </ng-template>
+  
+  <div class="chart-container" [ngClass]="{'loading': loading}">
+    <p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
+    <div *ngIf="loading" class="chart-loading-overlay">
+      <i class="pi pi-spin pi-spinner"></i>
+    </div>
+  </div>
+  
+  <ng-template pTemplate="footer">
+    <div class="flex justify-between gap-2 pt-2">
+      <p-button
+        *ngFor="let option of chartButtons"
+        [label]="option"
+        styleClass="p-button-sm p-button-outlined"
+        (onClick)="setActiveButton(option)"
+        [class.p-button-primary]="activeButton === option"
+      ></p-button>
+    </div>
+  </ng-template>
+</p-card> 

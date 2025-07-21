@@ -1,0 +1,40 @@
+<p-card styleClass="mb-1">
+  <ng-template pTemplate="header">
+    <div class="flex justify-between items-center px-4 pt-4">
+      <h2 class="text-xl font-bold">Price Alerts</h2>
+      <p-button icon="pi pi-plus" styleClass="p-button-rounded p-button-text" pTooltip="Add new alert" (click)="addNewAlert()"></p-button>
+    </div>
+  </ng-template>
+  
+  <div class="space-y-4">
+    <div *ngFor="let alert of priceAlerts; let i = index" class="flex flex-col gap-2 p-3 border-b last:border-b-0">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+            <span class="text-white font-bold text-xs">{{ alert.coin.charAt(0) }}</span>
+          </div>
+          <div>
+            <div class="font-medium">{{ alert.coin }}</div>
+            <div class="text-xs text-muted-foreground">{{ alert.condition }} {{ alert.price }}</div>
+          </div>
+        </div>
+        <p-inputSwitch [(ngModel)]="alert.active" (onChange)="toggleAlert(i)"></p-inputSwitch>
+      </div>
+    </div>
+    
+    <div *ngIf="priceAlerts.length === 0" class="flex flex-col items-center justify-center py-6 text-center">
+      <div class="w-12 h-12 bg-muted/20 rounded-full flex items-center justify-center mb-4">
+        <i class="pi pi-bell text-muted-foreground"></i>
+      </div>
+      <p class="text-muted-foreground">No price alerts set</p>
+      <p-button label="Create Alert" styleClass="p-button-text p-button-sm mt-2" (click)="addNewAlert()"></p-button>
+    </div>
+  </div>
+  
+  <ng-template pTemplate="footer">
+    <div class="flex justify-between">
+      <p-button label="Manage All" icon="pi pi-cog" styleClass="p-button-text p-button-sm" (click)="manageAllAlerts()"></p-button>
+      <p-button label="Settings" icon="pi pi-bell" styleClass="p-button-text p-button-sm" (click)="openSettings()"></p-button>
+    </div>
+  </ng-template>
+</p-card> 

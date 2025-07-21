@@ -1,0 +1,78 @@
+:host {
+  display: block;
+}
+
+:host ::ng-deep {
+  .p-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    height: auto;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .p-card-header {
+      padding-bottom: 0;
+    }
+
+    .p-card-content {
+      padding: 0;
+    }
+
+    .p-card-body {
+      padding: 1rem;
+    }
+
+    .p-card-footer {
+      padding-top: 1rem;
+    }
+  }
+
+  .chart-container {
+    position: relative;
+    height: 320px;
+    
+    &.loading {
+      opacity: 0.7;
+    }
+  }
+
+  .chart-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    
+    .pi-spinner {
+      font-size: 2rem;
+      color: var(--primary-color);
+    }
+  }
+
+  // Style for the crypto buttons
+  .p-button.p-button-sm.p-button-outlined {
+    transition: all 0.2s ease;
+    
+    &:hover:not(.p-button-primary) {
+      background-color: rgba(var(--primary-color-rgb), 0.04);
+    }
+    
+    &.p-button-primary {
+      font-weight: bold;
+    }
+  }
+  
+  // Improve dropdown appearance
+  .p-dropdown {
+    min-width: 100px;
+  }
+} 

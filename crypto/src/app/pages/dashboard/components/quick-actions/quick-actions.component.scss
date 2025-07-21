@@ -1,0 +1,12 @@
+:host ::ng-deep {
+  .p-card {
+    background: var(--surface-card);
+    border: 1px solid var(--surface-border);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    
+    .p-card-content {
+      padding: 0 1rem 1rem 1rem;
+    }
+  }
+} 

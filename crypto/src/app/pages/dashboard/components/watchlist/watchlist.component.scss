@@ -1,0 +1,32 @@
+:host ::ng-deep {
+  .watchlist-table {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  .p-card {
+    background: var(--surface-card);
+    border: 1px solid var(--surface-border);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    
+    .p-card-content {
+      padding: 0 1rem 1rem 1rem;
+    }
+  }
+  
+  .p-datatable {
+    .p-datatable-thead > tr > th {
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      color: var(--text-color-secondary);
+      background: transparent;
+      border: none;
+    }
+    
+    .p-datatable-tbody > tr > td {
+      padding: 0.5rem 1rem;
+      border: none;
+    }
+  }
+} 

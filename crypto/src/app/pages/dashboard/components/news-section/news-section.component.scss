@@ -1,0 +1,55 @@
+.news-content {
+  max-height: 350px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+}
+
+.news-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.news-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.news-content::-webkit-scrollbar-thumb {
+  background-color: rgba(155, 155, 155, 0.5);
+  border-radius: 20px;
+}
+
+:host {
+  display: block;
+  margin-bottom: 2rem;
+}
+
+:host ::ng-deep .news-card {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+:host ::ng-deep .p-tabview .p-tabview-nav {
+  border-bottom-width: 1px;
+}
+
+:host ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  border-color: #3B82F6;
+  color: #3B82F6;
+}
+
+:host ::ng-deep .p-avatar {
+  background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+}
+
+.news-item {
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: translateX(4px);
+  }
+}
+
+:host ::ng-deep .p-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+} 

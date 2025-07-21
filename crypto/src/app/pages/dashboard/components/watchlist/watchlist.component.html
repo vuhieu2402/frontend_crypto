@@ -1,0 +1,57 @@
+<p-card styleClass="mb-1">
+  <ng-template pTemplate="header">
+    <div class="flex justify-between items-center px-4 pt-4">
+      <h2 class="text-xl font-bold">Watchlist</h2>
+      <p-button icon="pi pi-plus" styleClass="p-button-rounded p-button-text" pTooltip="Add to watchlist"></p-button>
+    </div>
+  </ng-template>
+  <div class="watchlist-table">
+    <p-table [value]="watchlistItems" [tableStyle]="{ 'min-width': '100%' }" styleClass="p-datatable-sm">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Asset</th>
+          <th class="text-right">Price</th>
+          <th class="text-right">24h</th>
+          <th class="text-center">Chart</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item>
+        <tr class="hover:bg-muted/50 transition-colors">
+          <td>
+            <div class="flex items-center gap-2">
+              <div class="w-7 h-7 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                <span class="text-white font-bold text-xs">{{ item.symbol.charAt(0) }}</span>
+              </div>
+              <div>
+                <div class="font-medium">{{ item.symbol }}</div>
+                <div class="text-xs text-muted-foreground">{{ item.name }}</div>
+              </div>
+            </div>
+          </td>
+          <td class="text-right">{{ item.price }}</td>
+          <td class="text-right">
+            <span [class]="item.isPositive ? 'text-green-500' : 'text-red-500'">{{ item.change }}</span>
+          </td>
+          <td>
+            <div class="flex justify-center">
+              <div class="h-8 w-16 flex items-end">
+                <!-- Simple mini sparkline visualization -->
+                <div
+                  *ngFor="let value of item.sparkline"
+                  class="w-1 mx-[1px]"
+                  [style.height.%]="value"
+                  [class]="item.isPositive ? 'bg-green-500' : 'bg-red-500'"
+                ></div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <ng-template pTemplate="footer">
+    <div class="flex justify-center pt-3">
+      <p-button label="View All" styleClass="p-button-text p-button-sm"></p-button>
+    </div>
+  </ng-template>
+</p-card> 

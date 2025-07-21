@@ -1,0 +1,59 @@
+<div class="space-y-6">
+    <!-- Market Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <p-card *ngFor="let stat of marketStats" class="mb-2 stats-card">
+        <ng-template pTemplate="header">
+          <div class="flex justify-between items-center px-4 pt-4 pb-2">
+            <div class="text-sm font-medium">{{ stat.title }}</div>
+            <i [class]="stat.icon + ' text-muted-foreground'"></i>
+          </div>
+        </ng-template>
+        <div class="text-2xl font-bold">{{ stat.value }}</div>
+        <div class="flex items-center space-x-1 text-xs">
+          <i [class]="stat.isPositive ? 'pi pi-arrow-up text-green-500' : 'pi pi-arrow-down text-red-500'"></i>
+          <span [class]="stat.isPositive ? 'text-green-500' : 'text-red-500'">{{ stat.change }}</span>
+          <span class="text-muted-foreground">24h</span>
+        </div>
+      </p-card>
+    </div>
+
+    <!-- Top Coins -->
+    <p-card>
+      <ng-template pTemplate="header">
+        <div class="flex justify-between items-center px-4 py-4">
+          <h2 class="text-xl font-bold">Top Cryptocurrencies</h2>
+          <p-button 
+            icon="pi pi-refresh" 
+            styleClass="p-button-rounded p-button-text" 
+            (click)="refreshData()"
+            pTooltip="Refresh data"
+          ></p-button>
+        </div>
+      </ng-template>
+      <div class="space-y-4">
+        <div
+          *ngFor="let coin of topCoins"
+          class="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 transition-colors coin-item"
+        >
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center coin-icon">
+              <span class="text-white font-bold text-xs">{{ coin.symbol.charAt(0) }}</span>
+            </div>
+            <div>
+              <div class="font-medium">{{ coin.name }}</div>
+              <div class="text-sm text-muted-foreground">{{ coin.symbol }}</div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="font-medium">{{ coin.price }}</div>
+            <div class="text-sm text-muted-foreground">{{ coin.marketCap }}</div>
+          </div>
+          <p-badge
+            [value]="coin.change"
+            [severity]="coin.isPositive ? 'success' : 'danger'"
+            class="ml-2"
+          ></p-badge>
+        </div>
+      </div>
+    </p-card>
+  </div>
